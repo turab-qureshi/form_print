@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Print</title>
+        <script src="moment.js"></script>
+    </head>
+    <body onload="lister()">
+        <style>
+            .wrapper {
+                margin: 0;
+                width: 800px;
+                height: 1126px;
+                background: url("bg.png");
+                background-size: 800px 1126px;
+            }
+            .tick {
+                margin: 0px;
+                width: 20px;
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+            input[type='text'] {
+                margin: 0px;
+                position: absolute;
+                background-color: transparent;
+                border: none;
+            }
+            input[type='button'] {
+                background-color: #eee;
+                cursor: pointer;
+                padding: 5px 10px 5px 10px;
+                border: 1px solid #aaa;
+                border-radius: 7px;
+                color: #333;
+            }
+        </style>
+        <div class="wrapper">
+            <img class="inp tick visa" src="tick.png" style="top:98px; left:548px;" id="type_of_visa_1" onclick="select_visa(1)" />
+            <img class="inp tick visa" src="tick.png" style="top:113px; left:548px;" id="type_of_visa_2" onclick="select_visa(2)" />
+            <img class="inp tick visa" src="tick.png" style="top:128px; left:548px;" id="type_of_visa_3" onclick="select_visa(3)" />
+            <img class="inp tick visa" src="tick.png" style="top:143px; left:548px;" id="type_of_visa_4" onclick="select_visa(4)" />
+            <img class="inp tick visa" src="tick.png" style="top:158px; left:548px;" id="type_of_visa_5" onclick="select_visa(5)" />
+            <img class="inp tick visa" src="tick.png" style="top:173px; left:548px;" id="type_of_visa_6" onclick="select_visa(6)" />
+            <img class="inp tick title" src="tick.png" style="top:230px; left:60px;" id="title_1" onclick="select_title(1)" />
+            <img class="inp tick title" src="tick.png" style="top:230px; left:100px;" id="title_2" onclick="select_title(2)" />
+            <img class="inp tick title" src="tick.png" style="top:230px; left:145px;" id="title_3" onclick="select_title(3)" />
+            <img class="inp tick visit" src="tick.png" style="top:935px; left:163px;" id="visit_1" onclick="select_visit(1)" />
+            <img class="inp tick visit" src="tick.png" style="top:935px; left:257px;" id="visit_2" onclick="select_visit(2)" />
+            <img class="inp tick visit" src="tick.png" style="top:954px; left:70px;" id="visit_3" onclick="select_visit(3)" />
+            <img class="inp tick visit" src="tick.png" style="top:954px; left:162px;" id="visit_4" onclick="select_visit(4)" />
+            <img class="inp tick visit" src="tick.png" style="top:973px; left:70px;" id="visit_5" onclick="select_visit(5)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:793px; left:420px;" id="official_visa_1" onclick="select_official_visa(1)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:793px; left:541px;" id="official_visa_2" onclick="select_official_visa(2)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:793px; left:637px;" id="official_visa_3" onclick="select_official_visa(3)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:808px; left:420px;" id="official_visa_4" onclick="select_official_visa(4)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:808px; left:541px;" id="official_visa_5" onclick="select_official_visa(5)" />
+            <img class="inp tick official_visa" src="tick.png" style="top:808px; left:637px;" id="official_visa_6" onclick="select_official_visa(6)" />
+            <img class="inp tick official_entry" src="tick.png" style="top:866px; left:420px;" id="official_entry_1" onclick="select_official_entry(1)" />
+            <img class="inp tick official_entry" src="tick.png" style="top:866px; left:481px;" id="official_entry_2" onclick="select_official_entry(2)" />
+            <img class="inp tick official_entry" src="tick.png" style="top:866px; left:551px;" id="official_entry_3" onclick="select_official_entry(3)" />
+            <img class="inp tick official_entry" src="tick.png" style="top:866px; left:627px;" id="official_entry_4" onclick="select_official_entry(4)" />
+            <input class="inp" type="text" style="top:229px; left:197px; width:551px;" id="text_1" />
+            <input class="inp" type="text" style="top:268px; left:165px; width:226px;" id="text_2" />
+            <input class="inp" type="text" style="top:295px; left:115px; width:276px;" id="text_3" />
+            <input class="inp" type="text" style="top:326px; left:158px; width:234px;" id="text_4" />
+            <input class="inp" type="text" style="top:353px; left:116px; width:103px;" id="text_5" />
+            <input class="inp" type="text" style="top:353px; left:300px; width:90px;" id="text_6" />
+            <input class="inp" type="text" style="top:384px; left:127px; width:264px;" id="text_7" />
+            <input class="inp" type="text" style="top:412px; left:193px; width:198px;" id="text_8" />
+            <input class="inp" type="text" style="top:442px; left:80px; width:103px;" id="text_9" />
+            <input class="inp" type="text" style="top:442px; left:240px; width:152px;" id="text_10" />
+            <input class="inp" type="text" style="top:471px; left:128px; width:93px;" id="text_11" />
+            <input class="inp" type="text" style="top:471px; left:290px; width:101px;" id="text_12" />
+            <input class="inp" type="text" style="top:515px; left:57px; width:334px;" id="text_13" />
+            <input class="inp" type="text" style="top:540px; left:57px; width:334px;" id="text_14" />
+            <input class="inp" type="text" style="top:565px; left:148px; width:243px;" id="text_15" />
+            <input class="inp" type="text" style="top:588px; left:57px; width:334px;" id="text_16" />
+            <input class="inp" type="text" style="top:613px; left:80px; width:138px;" id="text_17" />
+            <input class="inp" type="text" style="top:614px; left:263px; width:128px;" id="text_18" />
+            <input class="inp" type="text" style="top:645px; left:263px; width:128px;" id="text_19" />
+            <input class="inp" type="text" style="top:670px; left:57px; width:334px;" id="text_20" />
+            <input class="inp" type="text" style="top:692px; left:57px; width:334px;" id="text_21" />
+            <input class="inp" type="text" style="top:716px; left:79px; width:312px;" id="text_22" />
+            <input class="inp" type="text" style="top:765px; left:57px; width:334px;" id="text_23" />
+            <input class="inp" type="text" style="top:786px; left:57px; width:334px;" id="text_24" />
+            <input class="inp" type="text" style="top:807px; left:203px; width:188px;" id="text_25" />
+            <input class="inp" type="text" style="top:829px; left:125px; width:265px;" id="text_26" />
+            <input class="inp" type="text" style="top:852px; left:252px; width:138px;" id="text_27" />
+            <input class="inp" type="text" style="top:874px; left:194px; width:197px;" id="text_28" />
+            <input class="inp" type="text" style="top:902px; left:237px; width:153px;" id="text_29" />
+            <input class="inp" type="text" style="top:972px; left:203px; width:188px;" id="text_30" />
+            <input class="inp" type="text" style="top:290px; left:425px; width:324px;" id="text_31" />
+            <input class="inp" type="text" style="top:316px; left:587px; width:162px;" id="text_32" />
+            <input class="inp" type="text" style="top:338px; left:425px; width:324px;" id="text_33" />
+            <input class="inp" type="text" style="top:361px; left:425px; width:324px;" id="text_34" />
+            <input class="inp" type="text" style="top:398px; left:425px; width:324px;" id="text_35" />
+            <input class="inp" type="text" style="top:421px; left:425px; width:324px;" id="text_36" />
+            <input class="inp" type="text" style="top:442px; left:471px; width:278px;" id="text_37" />
+            <input class="inp" type="text" style="top:480px; left:425px; width:324px;" id="text_38" />
+            <input class="inp" type="text" style="top:501px; left:425px; width:324px;" id="text_39" />
+            <input class="inp" type="text" style="top:523px; left:471px; width:278px;" id="text_40" />
+            <input class="inp" type="text" style="top:733px; left:564px; width:150px;" id="text_41" />
+            <input class="inp" type="text" style="top:753px; left:471px; width:163px;" id="text_42" />
+            <input class="inp" type="text" style="top:827px; left:517px; width:93px;" id="text_43" />
+            <input class="inp" type="text" style="top:866px; left:647px; width:17px;" id="text_44" />
+            <input class="inp" type="text" style="top:889px; left:496px; width:113px;" id="text_45" />
+            <input class="inp" type="text" style="top:888px; left:644px; width:93px;" id="text_46" />
+            <input class="inp" type="text" style="top:908px; left:496px; width:113px;" id="text_47" />
+            <input class="inp" type="text" style="top:928px; left:542px; width:207px;" id="text_48" />
+            <input class="inp" type="text" style="top:948px; left:422px; width:328px;" id="text_49" />
+        </div>
+        <div id="list" style="width:100%; text-align:left;">
+            <input type="button" onclick="submitter()" value="Submit" />
+            &nbsp;
+            <input type="button" onclick="printer()" value="Print" />
+            <br />
+            <div id="form_list"></div>
+        </div>
+        <script>
+            function select_visa(visa) {
+                var visas = document.getElementsByClassName("visa");
+                for(var i = 0; i < visas.length; i++)
+                {
+                   visas.item(i).style.opacity = 0;
+                }
+                document.getElementById('type_of_visa_'+visa).style.opacity = 100;
+            }
+            function select_title(title) {
+                var titles = document.getElementsByClassName("title");
+                for(var i = 0; i < titles.length; i++)
+                {
+                   titles.item(i).style.opacity = 0;
+                }
+                document.getElementById('title_'+title).style.opacity = 100;
+            }
+            function select_visit(visit) {
+                var visits = document.getElementsByClassName("visit");
+                for(var i = 0; i < visits.length; i++)
+                {
+                   visits.item(i).style.opacity = 0;
+                }
+                document.getElementById('visit_'+visit).style.opacity = 100;
+            }
+            function select_official_visa(visit) {
+                var visits = document.getElementsByClassName("official_visa");
+                for(var i = 0; i < visits.length; i++)
+                {
+                   visits.item(i).style.opacity = 0;
+                }
+                document.getElementById('official_visa_'+visit).style.opacity = 100;
+            }
+            function select_official_entry(visit) {
+                var visits = document.getElementsByClassName("official_entry");
+                for(var i = 0; i < visits.length; i++)
+                {
+                   visits.item(i).style.opacity = 0;
+                }
+                document.getElementById('official_entry_'+visit).style.opacity = 100;
+            }
+            function submitter() {
+                var inps = document.getElementsByClassName("inp");
+                var obj = {};
+                for(var i = 0; i < inps.length; i++)
+                {
+                    if(inps.item(i).id.search('text_') == -1){
+                        obj[inps.item(i).id] = inps.item(i).style.opacity;
+                    }else{
+                        obj[inps.item(i).id] = inps.item(i).value;
+                    }
+                }
+                var dt = moment().format('YYYYMMDDHHmmss');
+                if(localStorage.getItem('form_list') == null){
+                    var lst = {};
+                    lst[dt] = obj;
+                    localStorage.setItem('form_list',JSON.stringify(lst));
+                }else{
+                    var lst = JSON.parse(localStorage.getItem('form_list'));
+                    lst[dt] = obj;
+                    localStorage.setItem('form_list',JSON.stringify(lst));
+                }
+                lister();
+            }
+            function printer() {
+                document.getElementById('list').style.display = 'none';
+                window.print();
+                document.getElementById('list').style.display = 'block';
+            }
+            function lister() {
+                var lst = JSON.parse(localStorage.getItem('form_list'));
+                var keys = Object.keys(lst);
+                keys.sort( function ( a, b ) { return b - a; } );
+                var html = "";
+                var dt;
+                var dat;
+                for(var i in keys){
+                    dt = keys[i].split("");
+                    dat = dt[6]+dt[7]+"-"+dt[4]+dt[5]+"-"+dt[0]+dt[1]+dt[2]+dt[3]+" "+dt[8]+dt[9]+":"+dt[10]+dt[11]+":"+dt[12]+dt[13];
+                    html += "<p style='cursor:pointer;' onclick='load_form(`"+keys[i]+"`)'>"+dat+" --- "+lst[keys[i]]['text_1']+"</p>";
+                }
+                document.getElementById('form_list').innerHTML = html;
+            }
+            function load_form(dt) {
+                var lst = JSON.parse(localStorage.getItem('form_list'));
+                for(var i in lst[dt]){
+                    if(i.search('text_') == -1){
+                        document.getElementById(i).style.opacity = lst[dt][i];
+                    }else{
+                        document.getElementById(i).value = lst[dt][i];
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
